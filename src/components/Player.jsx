@@ -1,21 +1,13 @@
 import { useState, useRef } from "react";
+import { convertToUpper } from "../utils/string";
 
 export default function Player() {
 
   const [enteredPlayerName, setEnteredPlayerName] = useState('');
   const playerInput = useRef();
 
-  const handleNameChange = (e) => {
-
-    
-
-    setEnteredPlayerName(e.target.value);
-    console.log(enteredPlayerName);
-  }
-
   const handleClick = () => {
-    console.log(playerInput.current.value);
-    setEnteredPlayerName(playerInput.current.value);
+    setEnteredPlayerName(convertToUpper(playerInput.current.value));
   }
   
   return (
