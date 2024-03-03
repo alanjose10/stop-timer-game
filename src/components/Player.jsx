@@ -1,10 +1,37 @@
+import { useState, useRef } from "react";
+
 export default function Player() {
+
+  const [enteredPlayerName, setEnteredPlayerName] = useState('');
+  const playerInput = useRef();
+
+  const handleNameChange = (e) => {
+
+    
+
+    setEnteredPlayerName(e.target.value);
+    console.log(enteredPlayerName);
+  }
+
+  const handleClick = () => {
+    console.log(playerInput.current.value);
+    setEnteredPlayerName(playerInput.current.value);
+  }
+  
   return (
-    <section id="player">
-      <h2 className="">Welcome unknown entity</h2>
-      <p>
-        <input type="text" />
-        <button>Set Name</button>
+    <section className="text-center" id="player">
+      <h2 className="text-[#54a399] text-xl my-4">Welcome {enteredPlayerName ? enteredPlayerName: "unknown entity"}!</h2>
+      <p className="flex justify-center items-center">
+        <input 
+          type="text"
+          className="text-[#d1f0ec] border border-solid border-[#54a399] bg-[#192f2b] rounded rounded-tr-none rounded-br-none p-1 uppercase"
+          ref={playerInput}
+        />
+        <button 
+          className="cursor-pointer bg-[#54a399] hover:bg-[#3c8379] hover:border-[#3c8379] border border-solid border-[#54a399] px-4 py-[0.4rem] text-[#061e1a] rounded-tr-md rounded-br-md"
+          onClick={handleClick}
+        >Set Name
+        </button>
       </p>
     </section>
   );

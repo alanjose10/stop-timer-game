@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <Player />
-      <div id="challenges"></div>
+      <div id="challenges" className='max-w-24'></div>
     </>
   );
 }

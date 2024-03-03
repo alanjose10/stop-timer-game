@@ -17,3 +17,14 @@ body {
     color: #e1eeeb;
     min-height: 100vh;
 }
+
+header p {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
+    color: #c6f4f2;
+}
+
+#player input {
+    font: inherit;
+}
