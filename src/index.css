@@ -37,6 +37,6 @@ header p {
     }
 
     50% {
-        opacity: .5;
+        opacity: 0;
     }
 }

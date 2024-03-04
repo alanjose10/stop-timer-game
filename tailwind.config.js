@@ -11,7 +11,7 @@ export default {
     },
     extend: {
       animation: {
-        flash: 'flash 0.5s infinite',
+        flash: 'flash 1s infinite',
       }
     },
   },
