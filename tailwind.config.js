@@ -9,7 +9,11 @@ export default {
       'quicksand': ['Quicksand', 'sans-sherif'],
       'handjet': ['Handjet', 'cursive'],
     },
-    extend: {},
+    extend: {
+      animation: {
+        flash: 'flash 0.5s infinite',
+      }
+    },
   },
   plugins: [],
 }
