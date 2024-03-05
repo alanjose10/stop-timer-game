@@ -40,3 +40,19 @@ header p {
         opacity: 0;
     }
 }
+
+@keyframes slide-in-from-top {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+
+.result-modal::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  

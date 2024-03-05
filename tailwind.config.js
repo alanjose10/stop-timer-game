@@ -12,6 +12,7 @@ export default {
     extend: {
       animation: {
         flash: 'flash 1s infinite',
+        'slide-in-from-top': 'slide-in-from-top 0.35s ease-out',
       }
     },
   },
