@@ -52,7 +52,21 @@ header p {
     }
 }
 
-.result-modal::backdrop {
+dialog::backdrop {
     background: rgba(0, 0, 0, 0.9);
-  }
+}
+
+.results-para {
+    @apply my-2 text-lg;
+}
+
+.results-para strong {
+    @apply text-blue-800;
+}
+
+.results-button {
+    @apply bg-slate-800 hover:bg-slate-950 text-zinc-200 px-4 py-2 rounded-md font-bold text-lg;
+}
+
+
   
