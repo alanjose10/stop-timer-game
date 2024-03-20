@@ -8,31 +8,41 @@ export default function TimerChallenge({ title, targetTime }) {
     const timer = useRef();
     const dialogRef = useRef();
 
-    // const [timerExpired, setTimerExpired] = useState(false);
-    const [timerStarted, setTimerStarted] = useState(false);
+    const [timeRemaining, setTimeRemaining] = useState(targetTime * 1000);
+
+    const timerIsRunning = (timeRemaining > 0) && (timeRemaining < (targetTime * 1000));
+
+    if ( timeRemaining <= 0 ){
+        clearInterval(timer.current);
+        
+        dialogRef.current.open();
+    }
+
+    const handleTimerReset = () => {
+        setTimeRemaining(targetTime * 1000);
+    }
+
 
     function handleStart() {
-        setTimerStarted(true);
-        timer.current = setTimeout(() => {
-            setTimerStarted(false);
-            dialogRef.current.showModal();
-
-        }, targetTime * 1000);
+        // setTimerStarted(true);
+        timer.current = setInterval(() => {
+            setTimeRemaining((prev) => prev - 10)
+        }, 10);
     }
 
     function handleStop() {
-        setTimerStarted(false);
-        clearTimeout(timer.current);
+        clearInterval(timer.current);
+        dialogRef.current.open();
     }
 
     let paraBaseClass = "uppercase"
-    if (timerStarted) {
+    if (timerIsRunning) {
         paraBaseClass += " animate-flash"
     } 
 
     return (<>
-            <ResultModal ref={dialogRef} result="lost" targetTime={targetTime}></ResultModal>
-            <section className="w-[22rem] flex flex-col items-center justify-center text-[#221c18] bg-gradient-to-r from-cyan-400 to-cyan-600 shadow-md rounded-md mx-auto my-8 p-8">
+            <ResultModal ref={dialogRef} targetTime={targetTime} timeRemaining={timeRemaining} onReset={handleTimerReset}></ResultModal>
+            <section className="w-[22rem] h-[18rem] flex flex-col items-center justify-center text-[#221c18] bg-gradient-to-r from-cyan-400 to-cyan-600 shadow-md rounded-md mx-auto my-8 p-8">
                 <h2 className="uppercase text-2xl tracking-[.4em] m-0">
                     {title}
                 </h2>
@@ -42,13 +52,13 @@ export default function TimerChallenge({ title, targetTime }) {
                 <p>
                     <button 
                         className="border-none my-4 px-2 py-4 rounded-md bg-slate-800 hover:bg-slate-950 text-[#edfcfa] text-base cursor-pointer"
-                        onClick={ timerStarted ? handleStop : handleStart }
+                        onClick={ timerIsRunning ? handleStop : handleStart }
                     >
-                        {timerStarted?'Stop':'Start'} Challenge
+                        {timerIsRunning ? 'Stop':'Start'} Challenge
                     </button>
                 </p>
                 <p className={paraBaseClass}>
-                    {timerStarted?'Time is running...':'Timer inactive'}
+                    { timerIsRunning ? 'Time is running...' : '' }
                 </p>
             </section>
         </>
